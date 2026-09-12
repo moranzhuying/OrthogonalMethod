@@ -1,0 +1,27 @@
+\section{正交集算法的复杂度分析}
+
+\begin{theorem}{正交集算法的时间复杂度}{}
+	设$\boldsymbol{A}\in\GL_{n}\left(\R\right)$.对$\boldsymbol{A}$应用算法,总共需要$2n^{3}$次运算,其中,乘法需要$n^{3}$次,加法需要$n^{3}-2n^{2}+n$次.
+\end{theorem}
+
+\begin{theorem}{无除法迭代的正交集算法}{}
+	设$\boldsymbol{U}\in\GL_{n}\left(\R\right),\boldsymbol{A}_{0}=\boldsymbol{I}_{n\times n}$,对$\boldsymbol{A}_{0}$应用算法得到$\boldsymbol{A}_{1},\ldots,\boldsymbol{A}_{n+1}$,其中:
+	\begin{itemize}
+		\item 对$1\leq i,j\leq n$,令$t_{i,j}=\langle\row_{i}\left(\boldsymbol{U}\right)\mid\col_{j}\left(\boldsymbol{A}_{i-1}\right)\rangle$.
+		\item 对$1\leq i,j\leq n$,令$\col_{j}\left(\boldsymbol{A}_{i}\right)=
+		\begin{cases}
+			\col_{i}\left(\boldsymbol{A}_{i-1}\right),&i=j\\
+			t_{i,i}\col_{j}\left(\boldsymbol{A}_{i-1}\right)-t_{i,j}\col_{i}\left(\boldsymbol{A}_{i-1}\right),&i\neq j
+		\end{cases}$.
+		\item 对$1\leq i\leq n$,令$\col_{i}\left(\boldsymbol{A}_{n+1}\right)=\left(\langle\row_{i}\left(\boldsymbol{U}\right)\mid\col_{i}\left(\boldsymbol{A}_{n}\right)\rangle\right)^{-1}\col_{i}\left(\boldsymbol{A}_{n}\right)$.
+	\end{itemize}
+	在上述调整后的算法下,需要$\frac{5}{2}n^{3}-\frac{1}{2}n^{2}-n$次运算,其中乘法需要$\frac{3}{2}n^{2}+\frac{1}{2}n^{2}-n$次,加法需要$n^{3}-n^{2}$次.
+\end{theorem}
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+\section{修改过的矩阵的逆}
+
+\begin{theorem}{可逆矩阵的逆在添加$r$行$r$列后的逆}{}
+	设$\boldsymbol{A}_{2,2}\in\GL_{n}\left(\R\right)$,$\boldsymbol{A}$通过$\boldsymbol{A}_{2,2}$添加$r$行和$r$列得到,并且可以分块为$
+	\begin{bmatrix}
+		\boldsymbol{A}_{1,1}&\boldsymbol{A}_{1,2}\\
+		\boldsymbol{A}_{2,1}&\boldsymbol{A}_{2,2}
+	\end{bmatrix}$.记$\boldsymbol{B}=\boldsymbol{A}_{1,1}-\boldsymbol{A}_{1,2}\boldsymbol{A}_{2,2}^{-1}\boldsymbol{A}_{2,1}$.
+	\begin{enumerate}
+		\item $\boldsymbol{A}\in\GL_{n}\left(\R\right)$ $\iff$ $\boldsymbol{B}\in\GL_{r}\left(\R\right)$.
+		\item 当$\boldsymbol{A}\in\GL_{n}\left(\R\right)$时,$\boldsymbol{A}^{-1}=
+		\begin{bmatrix}
+			\boldsymbol{B}^{-1}&-\boldsymbol{B}^{-1}\boldsymbol{A}_{1,2}\boldsymbol{A}_{2,2}^{-1}\\
+			-\boldsymbol{A}_{2,2}^{-1}\boldsymbol{A}_{2,1}\boldsymbol{B}^{-1}&\boldsymbol{A}_{2,2}^{-1}+\boldsymbol{A}_{2,2}^{-1}\boldsymbol{A}_{2,1}\boldsymbol{B}^{-1}\boldsymbol{A}_{1,2}\boldsymbol{A}_{2,2}^{-1}	
+		\end{bmatrix}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}{可逆矩阵的逆在删去$r$行$r$列后的逆}{}
+	设$\boldsymbol{A}=\begin{bmatrix}
+		\boldsymbol{A}_{1,1}&\boldsymbol{A}_{1,2}\\
+		\boldsymbol{A}_{2,1}&\boldsymbol{A}_{2,2}
+	\end{bmatrix}\in\GL_{n}\left(\R\right)$,$\boldsymbol{A}^{-1}=
+	\begin{bmatrix}
+		\boldsymbol{A}^{1,1}&\boldsymbol{A}^{1,2}\\
+		\boldsymbol{A}^{2,1}&\boldsymbol{A}^{2,2}
+	\end{bmatrix}\in\mathbf{M}_{n}\left(\R\right)$,其中
+	\begin{align*}
+		\boldsymbol{A}_{1,1}\in\mathbf{M}_{r}\left(\boldsymbol{\R}\right),\boldsymbol{A}_{2,2}\in\GL_{n-r}\left(\R\right),\boldsymbol{A}^{1,1}\in\mathbf{M}_{r}\left(\R\right),\boldsymbol{A}^{2,2}\in\mathbf{M}_{n-r}\left(\R\right).
+	\end{align*}
+	\begin{enumerate}
+		\item $\boldsymbol{A}_{2,2}\in\GL_{n-r}\left(\R\right)\iff\boldsymbol{A}^{1,1}\in\GL_{r}\left(\R\right)$.
+		\item 若$\boldsymbol{A}_{2,2}\in\GL_{n-r}\left(\R\right)$,则$\boldsymbol{A}_{2,2}^{-1}=\boldsymbol{A}^{2,2}-\boldsymbol{A}^{2,1}\left(\boldsymbol{A}^{1,1}\right)^{-1}\boldsymbol{A}^{1,2}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{corollary}{可逆矩阵删去$1$行$1$列后所得矩阵的可逆性判别}{}
+	设$\boldsymbol{A}\in\GL_{n}\left(\R\right),1\leq i,j\leq n$,删去$\boldsymbol{A}$的第$i$行和第$j$列得到子矩阵$\boldsymbol{A}\left(i\mid  j\right)$,则
+	\begin{center}
+		$\boldsymbol{A}\left(i\mid j\right)\in\GL_{n-1}\left(\R\right)$ $\iff$ $A^{-1}$的$\left(j,i\right)$元可逆.
+	\end{center}
+\end{corollary}

@@ -1,0 +1,43 @@
+\section{正交集的其他应用}
+
+\begin{example}{判断线性映射的像是否相同}{}
+	设$\boldsymbol{A}\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{B}\in\mathbf{M}_{m,k}\left(\R\right)$.我们用如下方法求出所有满足$\boldsymbol{A}\boldsymbol{x}=\boldsymbol{B}\boldsymbol{y}$的$\boldsymbol{x}\in\mathbf{M}_{n,1}\left(\R\right)$和$\boldsymbol{y}\in\mathbf{M}_{k,1}\left(\R\right)$:
+	\begin{itemize}
+		\item 用算法(\ref{algo:orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces})求出$\row\left(\left[\boldsymbol{A}\middle|-\boldsymbol{B}\right]\right)^{\perp}$.
+		\item 把$\row\left(\left[\boldsymbol{A}\middle|-\boldsymbol{B}\right]\right)^{\perp}$的每个矩阵$\boldsymbol{x}$分块为
+		$\begin{bmatrix}
+			\boldsymbol{x}_{a}\\
+			\boldsymbol{y}_{b}
+		\end{bmatrix}$,其中$\boldsymbol{x}_{a}\in\mathbf{M}_{n,1}\left(\R\right),\boldsymbol{y}_{b}\in\mathbf{M}_{k,1}\left(\R\right)$.
+	\end{itemize}
+\end{example}
+
+\begin{example}{矩阵方程$\boldsymbol{A}\boldsymbol{X}=\boldsymbol{B}\boldsymbol{Y}$的通解}{}
+	设$\boldsymbol{A}\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{B}\in\mathbf{M}_{m,k}\left(\R\right)$.用如下方法可求出所有满足$\boldsymbol{A}\boldsymbol{X}=\boldsymbol{B}\boldsymbol{Y}$的$\boldsymbol{X}\in\mathbf{M}_{n,p}\left(\R\right)$和$\boldsymbol{Y}\in\mathbf{M}_{k,p}\left(\R\right)$:
+	\begin{itemize}
+		\item 求出$\row\left(\left[\boldsymbol{A}\middle|-\boldsymbol{B}\right]\right)^{\perp}$的正交基$\left(\boldsymbol{v}_{i}\right)_{i=1}^{d}$.
+		\item 对每个$1\leq i\leq n$,把$\boldsymbol{v}_{i}$分块为$
+		\begin{bmatrix}
+			\boldsymbol{x}_{i}\\
+			\boldsymbol{y}_{i}
+		\end{bmatrix}$,其中$\boldsymbol{x}_{i}\in\mathbf{M}_{n,1}\left(\R\right),\boldsymbol{y}_{i}\in\mathbf{M}_{k,1}\left(\R\right)$.
+		\item 对每个$1\leq i\leq n$,求出$\R$的元素族$\left(\rho_{j,i}\right)_{j=1}^{d}$,使得$
+		\begin{bmatrix}
+			\row_{i}\left(\boldsymbol{X}\right)\\
+			\row_{i}\left(\boldsymbol{Y}\right)
+		\end{bmatrix}=\sum\limits_{j=1}^{d}\boldsymbol{v}_{j}\rho_{j,i}$.
+		\item 对每个$1\leq j\le d$,令$\boldsymbol{\rho}_{j}=\left[\alpha_{j,1}\ldots\alpha_{j,p}\right]^{\top}$.
+		\item 求出$\sum\limits_{j=1}^{d}\boldsymbol{x}_{j}\boldsymbol{\rho}_{j}$和$\sum\limits_{j=1}^{d}\boldsymbol{y}_{j}\boldsymbol{\rho}_{j}$,二者分别等于$\boldsymbol{C}$和$\boldsymbol{D}$.
+	\end{itemize}
+\end{example}
+
+\begin{example}{矩阵方程$\boldsymbol{A}\boldsymbol{C}=\boldsymbol{C}\boldsymbol{B}$的求解}{}
+	设$\boldsymbol{A},\boldsymbol{B}\in\mathbf{M}_{n}\left(\R\right)$.我们按照如下方法求出所有满足$\boldsymbol{A}\boldsymbol{C}=\boldsymbol{C}\boldsymbol{B}$的$\boldsymbol{C}\in\mathbf{M}_{n}\left(\R\right)$:
+	\begin{itemize}
+		\item 记$\boldsymbol{M}\coloneq\boldsymbol{I}_{n\times n}\otimes\boldsymbol{A}-\boldsymbol{B}^{\top}\otimes\boldsymbol{I}_{n\times n}$,用算法(\ref{algo:orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces})求出$\row\left(\boldsymbol{M}\right)^{\perp}$的基$\left(\boldsymbol{w}_{i}\right)_{i=1}^{r}$.
+		\item 把$\vect\left(\boldsymbol{C}\right)$表示为$\sum\limits_{i=1}^{r}\rho_{i}\boldsymbol{w}_{i}$,再拉回为$\boldsymbol{C}$.
+	\end{itemize}
+\end{example}
+
+
+

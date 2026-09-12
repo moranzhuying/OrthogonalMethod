@@ -1,0 +1,27 @@
+\section{求线性变换的原像}
+
+\begin{theorem}{线性变换的原像}{}
+	设$\boldsymbol{A}\in\mathbf{M}_{m,n}\left(\R\right)$,$\left(s_{i}\right)_{i=1}^{r}$是$\R^{n}$的元素族,$\mathcal{E}$是$\R^{n}$的典范基,$S=\langle s_{1},\ldots,s_{r}\rangle$.令
+	\begin{align*}
+		\mathcal{L}_{\boldsymbol{A}}:\mathbf{M}_{n,1}\left(\R\right)\to\mathbf{M}_{m,1}\left(\R\right),\boldsymbol{x}\mapsto\boldsymbol{A}\boldsymbol{x}.
+	\end{align*}
+	若$d=m-\dim S$,$\boldsymbol{P}\in\mathbf{M}_{d,m}\left(\R\right)$且$\left(\left[\col_{i}\left(\boldsymbol{P}\right)\right]_{\mathcal{E}}^{-1}\right)_{i=1}^{m}$为$S^{\perp}$的基,则$\mathcal{L}_{\boldsymbol{A}}^{-1}\left(S\right)=\row\left(\boldsymbol{P}\boldsymbol{A}\right)^{\perp}$.
+\end{theorem}
+
+基于此,我们得到了计算$\mathcal{L}_{\boldsymbol{A}}^{-1}\left(S\right)$的方法:
+\begin{itemize}
+	\item 给出$\R^{n}$的子空间$S$的生成元$\left(s_{i}\right)_{i=1}^{r}$,用算法(\ref{algo:orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces})求$S^{\perp}$和$S^{\perp}$的基$\left(u_{i}\right)_{i=1}^{d}$,得到$\boldsymbol{P}\coloneq\left[\left[u_{1}\right]_{\mathcal{E}}\middle|\ldots\middle|\left[u_{d}\right]_{\mathcal{E}}\right]^{\top}$.
+	\item 计算$\boldsymbol{P}\boldsymbol{A}$.
+	\item 用算法(\ref{algo:orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces})求$\row\left(\boldsymbol{A}\right)$的正交补$\row\left(\boldsymbol{P}\boldsymbol{A}\right)^{\perp}$,得到的基就是$\mathcal{L}_{\boldsymbol{A}}^{-1}\left(S\right)$的基.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+

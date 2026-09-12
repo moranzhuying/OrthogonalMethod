@@ -1,0 +1,98 @@
+\section{正交分解}
+
+本节中,$\mathcal{E}$是$\R^{n}$的典范基,$\left(\boldsymbol{e}_{i}\right)_{i=1}^{n}$是$\mathbf{M}_{1,n}\left(\R\right)$的典范基.
+
+\begin{definition}{主元变换}{}
+	设$\left(v_{i}\right)_{i=1}^{n},\left(w_{i}\right)_{i=1}^{n}$是$\R^{n}$的元素族,对$1\leq j\leq n$和$\boldsymbol{t}_{j}^{\top}=\left[t_{1}\ldots t_{n}\right]^{\top}\in\mathbf{M}_{n,1}\left(\R\right)$(其中$t_{j}\in\R^{\times}$),记
+	\begin{align*}
+		\boldsymbol{M}_{j}=\left[\boldsymbol{e}_{1}^{\top}\middle|\ldots\middle|\boldsymbol{t}_{j}^{\top}\middle|\boldsymbol{e}_{j+1}^{\top}\middle|\ldots\middle|\boldsymbol{e}_{n}^{\top}\right],
+	\end{align*}
+	设$\boldsymbol{V}=\left[\left[v_{1}\right]_{\mathcal{E}}\middle|\ldots\middle|\left[v_{n}\right]_{\mathcal{E}}\right],\boldsymbol{W}=\left[\left[w_{1}\right]_{\mathcal{E}}\middle|\ldots\middle|\left[w_{n}\right]_{\mathcal{E}}\right],1\leq k\le n$.若$\boldsymbol{W}=\boldsymbol{V}\boldsymbol{M}_{k}^{-1}$,则称$\left(w_{i}\right)_{i=1}^{n}$由$\left(v_{i}\right)_{i=1}^{n}$作$k$-主元变换得到,称$\boldsymbol{M}_{k}$是$k$-主元变换矩阵.
+\end{definition}
+
+\begin{remark}{$k$-主元变换的性质}{}
+	固定$1\leq k\leq n$.显然$\boldsymbol{M}_{k}\in\GL_{n}\left(\R\right)$,因此$\langle w_{1},\ldots,w_{n}\rangle=\langle v_{1},\ldots,v_{n}\rangle$.采用逐分量的写法,则对任意$1\leq i\leq n$,
+	\begin{align*}
+		w_{i}=
+		\begin{cases}
+			t_{i}^{-1}v_{i},&i=k\\
+			v_{k}-t_{k}t_{i}^{-1}v_{i},&i\neq k
+		\end{cases}
+	\end{align*}
+	可以看到,$t_{k}\in\R^{\times}$保证了$\langle w_{1},\ldots,w_{n}\rangle=\langle v_{1},\ldots,v_{n}\rangle$,这一点在后续还会接着体现出来.
+\end{remark}
+
+\begin{theorem}{主元变换诱导的正交分解}{}
+	设$u\in\R^{n}\setminus\left\{0\right\}$,$\left(v_{i}\right)_{i=1}^{n}$是$\R^{n}$的元素族.假设存在$1\leq j\leq n$使$\langle u\mid v_{j}\rangle\neq 0$.对任一$1\leq i\leq n$,记
+	\begin{align*}
+		w_{i}=
+		\begin{cases}
+			\left(\langle u\mid v_{i}\rangle\right)^{-1}v_{i},&i=j\\
+			v_{i}-\langle u\mid v_{i}\rangle\left(\langle u\mid v_{j}\rangle\right)^{-1}v_{j},&i\neq j
+		\end{cases}
+	\end{align*}
+	\begin{enumerate}
+		\item 对任一$1\leq i\leq n$,$\langle u\mid w_{i}\rangle=\delta_{j,i}$.
+		\item $u^{\perp}\cap\langle v_{1},\ldots,v_{n}\rangle=\langle w_{1},\ldots,w_{j-1},w_{j+1},\ldots,w_{n}\rangle$.
+		\item $V=\langle w_{j}\rangle\oplus u^{\perp}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{lemma}{顺序主元变换的正交性和归一性}{orthogonality-and-nomality-of-ordered-pivot-transformation}
+	设$\left(v_{i}\right)_{i=1}^{m}$是$\R^{n}$的自由族($1\leq m\leq n$),$\left(w_{j}^{\left(0\right)}\right)_{j=1}^{n},\ldots,\left(w_{j}^{\left(m\right)}\right)_{j=1}^{n}$是$\R^{n}$的元素族,满足下列条件:
+	\begin{enumerate}
+		\item 对任一$1\leq i\leq m$,$\langle v_{i}\mid w_{i}^{\left(i-1\right)}\rangle\neq 0$.
+		\item 对任一$1\leq j\leq n$,$w_{j}^{\left(m\right)}=
+		\begin{cases}
+			\left(\langle v_{m},w_{m}^{\left(m-1\right)}\rangle\right)^{-1}w_{m}^{\left(m-1\right)},&j=m\\
+			w_{j}^{\left(m-1\right)}-\langle v_{m},w_{j}^{\left(m-1\right)}\rangle\left(\langle v_{m}\mid w_{m}^{\left(m-1\right)}\rangle\right)^{-1}w_{m}^{\left(m-1\right)},&j\neq m
+		\end{cases}$
+	\end{enumerate}
+	那么,对任一$1\leq r\leq m,1\leq s\leq n$,有$\langle v_{r}\mid w_{s}^{\left(m\right)}\rangle=\delta_{r,s}$.
+\end{lemma}
+
+\begin{theorem}{主元变换下线性子空间的直交分解}{}
+	记号同引理(\ref{lem:orthogonality-and-nomality-of-ordered-pivot-transformation}).
+	\begin{enumerate}
+		\item $\langle w_{1}^{\left(m\right)},\ldots,w_{n}^{\left(m\right)}\rangle=\langle w_{1}^{\left(0\right)},\ldots,w_{n}^{\left(0\right)}\rangle$.
+		\item $\langle w_{1}^{\left(0\right)},\ldots,w_{n}^{\left(0\right)}\rangle\cap\langle v_{1},\ldots,v_{m}\rangle^{\perp}=\langle w_{m+1}^{\left(m\right)},\ldots,w_{n}^{\left(m\right)}\rangle$.
+	\end{enumerate}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

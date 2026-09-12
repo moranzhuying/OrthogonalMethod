@@ -1,0 +1,130 @@
+\section{线性方程组的求解}
+
+\begin{lemma}{非齐次线性方程组的齐次化}{homogenoulization-of-nonhomogenous-linear-systems}
+	设$\boldsymbol{U}=\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{u}_{n+1}=
+	\begin{bmatrix}
+		u_{1,n+1}\\
+		\vdots\\
+		u_{m,n+1}
+	\end{bmatrix},
+	\tilde{\boldsymbol{u}}_{1}=
+	\begin{bmatrix}
+		\row_{1}\left(\boldsymbol{U}\right)\\
+		-u_{1,n+1}
+	\end{bmatrix},
+	\ldots,
+	\tilde{\boldsymbol{u}}_{m}=
+	\begin{bmatrix}
+		\row_{m}\left(\boldsymbol{U}\right)\\
+		-u_{m,n+1}
+	\end{bmatrix},
+	\tilde{\boldsymbol{U}}=
+	\begin{bmatrix}
+		\tilde{\boldsymbol{u}}_{1}\\
+		\vdots\\
+		\tilde{\boldsymbol{u}}_{m}
+	\end{bmatrix}$.那么,线性方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$和齐次线性方程组$\tilde{\boldsymbol{U}}
+	\begin{bmatrix}
+		\boldsymbol{x}\\
+		1
+	\end{bmatrix}
+	=\boldsymbol{O}_{m\times 1}$有相同的解.
+\end{lemma}
+
+\begin{theorem}{线性方程组求解的正交集算法:求解步骤}{solving-step-of-orthogonal-algorithm-of-linear-systems}
+	记号同引理(\ref{lem:homogenoulization-of-nonhomogenous-linear-systems}).设
+	\begin{itemize}
+		\item $\left(\boldsymbol{X}_{i}\right)_{i=0}^{m}$是$\mathbf{M}_{n+1,1}\left(\R\right)$的一族子空间,其中$X_{0}=\boldsymbol{M}_{n+1,1}\left(\R\right)$,对任意$1\leq i\leq m$,$X_{i}=\left\{\tilde{\boldsymbol{u}}_{i}\right\}^{\perp}\cap X_{i-1}$.
+		\item 对任意$0\leq i\leq m$,$N_{i}\in\left\{n+1-i,\ldots,n+1\right\}$.
+		\item $\left(\boldsymbol{e}_{i}\right)_{i=1}^{n+1}$是$\mathbf{M}_{n+1,1}\left(\R\right)$的典范基,$\boldsymbol{w}_{1}^{\left(0\right)}=\boldsymbol{e}_{1},\ldots,\boldsymbol{w}_{n+1}^{\left(0\right)}=\boldsymbol{e}_{n+1}$.
+		\item 对任意$0\leq i\leq m$,$X_{i}=\langle\boldsymbol{w}_{1}^{\left(i\right)},\ldots,\boldsymbol{w}_{N_{i}}^{\left(i\right)}\rangle$,其中$\boldsymbol{w}_{1}^{\left(i\right)},\ldots,\boldsymbol{w}_{N_{i-1}}^{\left(i\right)}$的$\left(n+1,1\right)$元是$0$,$\boldsymbol{w}_{N_{i}}^{\left(i\right)}$的$\left(n+1,1\right)$元是$1$.
+		\item 对任意$1\leq i\leq m$和$1\leq j\leq N_{i}$,$t_{j}^{\left(i\right)}=\langle\tilde{\boldsymbol{u}}_{i}^{\top}\mid\boldsymbol{w}_{j}^{\left(i-1\right)}\rangle$.
+		\item $\pi:\mathbf{M}_{n+1,1}\left(\R\right)\to\mathbf{M}_{n,1}\left(\R\right),\left[x_{1}\ldots x_{n+1}\right]^{\top}\mapsto\left[x_{1}\ldots x_{n}\right]^{\top},\hat{\boldsymbol{w}}_{1}^{\left(m\right)}=\pi\left(\boldsymbol{w}_{1}^{\left(m\right)}\right),\ldots,\hat{\boldsymbol{w}}_{N_{m}}^{\left(m\right)}=\pi\left(\boldsymbol{w}_{N_{m}}^{\left(m\right)}\right)$.
+	\end{itemize}
+	\begin{enumerate}
+		\item 对任意$1\leq i\leq m$,下列三种情形有且仅有一种成立:
+		\begin{itemize}
+			\item 对任意$1\leq j\leq N_{i-1}$都有$t_{j}^{\left(i\right)}=0$.此时$N_{i}=N_{i-1}$,对任一$1\leq j\leq N_{i}$有$\boldsymbol{w}_{j}^{\left(i\right)}=\boldsymbol{w}_{j}^{\left(i-1\right)}$.
+			\item 对任一$1\leq j<N_{i-1}$都有$t_{j}^{\left(i\right)}=0$,并且$t_{N_{i-1}}^{\left(j\right)}\neq 0$.此时方程$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$无解.
+			\item 存在$1\leq k<N_{i-1}$使得$t_{k}^{\left(i\right)}\neq 0$.此时$N_{i}=N_{i-1}-1$,对任一$1\leq j\neq k\leq N_{i-1}$有
+			\begin{align*}
+				\boldsymbol{w}_{j}^{\left(i\right)}=\boldsymbol{w}_{j}^{\left(i-1\right)}-t_{j}^{\left(i\right)}\left(t_{k}^{\left(i\right)}\right)^{-1}\boldsymbol{w}_{k}^{\left(i-1\right)}.
+			\end{align*}
+		\end{itemize}
+		\item 当$X_{m}=\Nul\left(\tilde{\boldsymbol{U}}\right)$时,若$\hat{\boldsymbol{w}}_{N_{m}}^{m}$是方程$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的特解,则
+		\begin{itemize}
+			\item $\hat{\boldsymbol{w}}_{N_{m}}^{m}+\langle\hat{\boldsymbol{w}}_{1}^{\left(m\right)},\ldots,\hat{\boldsymbol{w}}_{N_{m}-1}^{\left(m\right)}\rangle$是方程$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的通解.
+			\item $N_{m}=1$时,$\hat{\boldsymbol{w}}_{N_{m}}^{m}$是方程$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的唯一解.
+		\end{itemize}
+	\end{enumerate}
+\end{theorem}
+
+\begin{algorithm}{求解线性方程组的正交集算法}{orthogonal-set-algorithm-for-solving-linear-systems}
+	设$\pi:\mathbf{M}_{n+1,1}\left(\R\right)\to\mathbf{M}_{n,1}\left(\R\right),\left[x_{1}\ldots x_{n+1}\right]^{\top}\mapsto\left[x_{1}\ldots x_{n}\right]^{\top}$.
+	\begin{itemize}
+		\item \textbf{输入}:$\tilde{\boldsymbol{U}}=\left[\boldsymbol{U}\middle|-\boldsymbol{u}_{n+1}\right]\in\mathbf{M}_{m,n+1}\left(\R\right)$,定义方法同定理(\ref{thm:solving-step-of-orthogonal-algorithm-of-linear-systems}).
+		\item \textbf{输出}:线性方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的通解,或输出``方程组无解''.
+	\end{itemize}
+	\textbf{初始化辅助矩阵}:令$\boldsymbol{W}\coloneq\left[\boldsymbol{w}_{1}\middle|\ldots\middle|\boldsymbol{w}_{n+1}\right]=\boldsymbol{I}_{\left(n+1\right)\times\left(n+1\right)}\in\mathbf{M}_{n+1}\left(\R\right)$.
+	
+	\textbf{初始化计数器}:设置方程(行)计数器$i=1$,已求得的主元个数$\ell=0$.
+	
+	\textbf{计算内积}:对$j=1,\ldots,n+1$,计算$t_{j}^{\left(i\right)}=\langle\tilde{u}_{i}\mid\boldsymbol{w}_{j}\rangle$.
+	
+	\textbf{寻找主元列与方程组相容性判别}:在$\left\{\ell+1,\ldots,n\right\}$中,寻找第一个满足$t_{j}^{\left(r\right)}\neq 0$的$r$.
+	\begin{itemize}
+		\item \textbf{情形1(无相关的主元)}:如果对任意$j\in\left\{\ell+1,\ldots,n\right\}$都有$t_{j}^{\left(i\right)}\neq 0$,那么:
+		\begin{itemize}
+			\item 当$t_{n+1}^{\left(i\right)}=0$时,转到\textbf{循环控制};
+			\item 当$t_{n+1}^{\left(i\right)}\neq 0$时,输出``方程组无解'',结束算法.
+		\end{itemize}
+		\item \textbf{情形2(找到主元)}:如果这样的$r$存在,转到\textbf{主元列的更新和归一化}.
+	\end{itemize}
+	
+	\textbf{主元列的更新和归一化}:令$\ell\leftarrow\ell+1,\boldsymbol{w}_{r}\leftarrow\left(\boldsymbol{t}_{r}^{\left(i\right)}\right)^{-1}\boldsymbol{w}_{r}$.若$r\neq\ell$,交换$\boldsymbol{w}_{\ell}$和$\boldsymbol{w}_{r}$,交换$t_{\ell}^{\left(i\right)}$和$t_{r}^{\left(i\right)}$.
+	
+	\textbf{非主元列正交化}:对任意$j\in\left\{1,\ldots,n+1\right\}\setminus\left\{\ell\right\}$,当$t_{j}^{\left(i\right)}\neq 0$时令$\boldsymbol{w}_{j}\leftarrow\boldsymbol{w}_{j}-t_{j}^{\left(i\right)}\boldsymbol{w}_{\ell}$.
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

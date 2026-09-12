@@ -1,0 +1,19 @@
+\section{分块矩阵的逆的正交集算法}
+
+\begin{algorithm}{分块矩阵求逆的正交集算法}{}
+	\begin{itemize}
+		\item \textbf{输入}:$\boldsymbol{A}\in\mathbf{M}_{n}\left(\R\right)$,分块为$\left(\boldsymbol{A}_{i,j}\right)_{\substack{1\leq i\leq p\\1\leq j\leq p}}$,其中,对任意$1\leq i,j\leq p$,$\boldsymbol{A}_{i,j}$为$n_{i}\times n_{j}$矩阵,满足$\sum\limits_{k=1}^{p}n_{i}=n$.
+		\item \textbf{输出}:和$\boldsymbol{A}$的分块方法相同的$\boldsymbol{A}^{-1}$,或者``$\boldsymbol{A}$不可逆''.
+	\end{itemize}
+	\textbf{初始化}:令$\boldsymbol{B}_{0}=\boldsymbol{I}_{n\times n}$,分块为$\left(\boldsymbol{B}_{i,j}\right)_{\substack{1\leq i\leq p\\1\leq j\leq p}}$,其中,对任意$1\leq i,j\leq p$,$\boldsymbol{B}_{i,j}$为$n_{i}\times n_{j}$矩阵.
+	
+	\textbf{主循环}:令$i=1,\ldots,n$.
+	\begin{itemize}
+		\item \textbf{计算内积}:对$j=1,\ldots,p$,计算$\boldsymbol{C}_{i,j}\coloneq\sum\limits_{k=1}^{p}\boldsymbol{A}_{i,k}\boldsymbol{B}_{k,j}$.
+		\item \textbf{主元块检验和分块列交换}:如果$\boldsymbol{C}_{i,i}$可逆,转到\textbf{分块归一化};如果$\boldsymbol{C}_{i,i}$不可逆,寻找$\ell\in\left\{i,\ldots,n\right\}$,使得交换分块后的$\boldsymbol{B}$的第$i$列与第$\ell$列后$\boldsymbol{C}_{i,i}$可逆.如果找不到,输出``$\boldsymbol{A}$不可逆'',结束算法.
+		\item \textbf{分块归一化}:对$j=1,\ldots,p$,作$\boldsymbol{B}_{j,i}\leftarrow\boldsymbol{B}_{j,i}\boldsymbol{C}_{i,i}^{-1}$.
+		\item \textbf{分块消元}:对$k=1,\ldots,p$且$\neq i$,$j=1,\ldots,p$,作$\boldsymbol{B}_{j,k}\leftarrow\boldsymbol{B}_{j,k}-\boldsymbol{B}_{j,i}\boldsymbol{C}_{i,j}$.
+		\item \textbf{循环判定}:若$i<p$,作$i\leftarrow i+1$,转到\textbf{计算内积};若$i=p$,\textbf{主循环}结束,转到\textbf{输出结果}.
+	\end{itemize}
+	\textbf{输出结果}:返回分块后的$\boldsymbol{B}$作为$\boldsymbol{A}^{-1}$.
+\end{algorithm}

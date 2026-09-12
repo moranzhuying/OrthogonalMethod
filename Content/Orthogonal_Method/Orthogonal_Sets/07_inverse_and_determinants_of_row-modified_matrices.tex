@@ -1,0 +1,33 @@
+\section{修改过行的矩阵的逆和行列式}
+
+\begin{theorem}{修改过单个行的矩阵的逆和行列式}{}
+	设$1\leq s\leq n,\boldsymbol{A}\in\GL_{n}\left(\R\right),\boldsymbol{C}\in\mathbf{M}_{n}\left(\R\right)$,对任意$1\leq i\neq s\leq n$,有$\row_{i}\left(\boldsymbol{C}\right)=\row_{i}\left(\boldsymbol{A}\right)$.对任意$1\leq i\leq n$,令
+	\begin{align*}
+		t_{i}=\langle\row_{s}\left(\boldsymbol{C}\right)\mid\col_{i}\left(\boldsymbol{A}^{-1}\right)\rangle.
+	\end{align*}
+	若$t_{s}\neq 0$,则
+	\begin{enumerate}
+		\item $\boldsymbol{C}\in\GL_{n}\left(\R\right)$,并且对任意$1\leq i\leq n$,有$\col_{i}\left(\boldsymbol{C}^{-1}\right)=
+		\begin{cases}
+			\col_{i}\left(\boldsymbol{A}^{-1}\right)-t_{i}t_{s}^{-1}\col_{s}\left(\boldsymbol{A}^{-1}\right),&i\neq s,\\
+			t_{s}^{-1}\col_{s}\left(\boldsymbol{A}^{-1}\right),&i=s.
+		\end{cases}$
+		\item $\det\left(\boldsymbol{C}\right)=\det\left(\boldsymbol{A}\right)t_{s}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{corollary}{修改过单个列的矩阵的逆和行列式}{}
+	设$1\leq s\leq n,\boldsymbol{A}\in\GL_{n}\left(\R\right),\boldsymbol{C}\in\mathbf{M}_{n}\left(\R\right)$,对任意$1\leq i\neq s\leq n$,有$\col_{i}\left(\boldsymbol{C}\right)=\col_{i}\left(\boldsymbol{A}\right)$.对任意$1\leq i\leq n$,令
+	\begin{align*}
+		r_{i}=\langle\row_{i}\left(\boldsymbol{A}^{-1}\right)\mid\col_{s}\left(\boldsymbol{C}\right)\rangle.
+	\end{align*}
+	若$r_{s}\neq 0$,则
+	\begin{enumerate}
+		\item $\boldsymbol{C}\in\GL_{n}\left(\R\right)$,并且对任意$1\leq i\leq n$,有$\row_{i}\left(\boldsymbol{C}^{-1}\right)=
+		\begin{cases}
+			\row_{i}\left(\boldsymbol{A}^{-1}\right)-r_{i}r_{s}^{-1}\row_{s}\left(\boldsymbol{A}^{-1}\right),&i\neq s,\\
+			r_{s}^{-1}\row_{s}\left(\boldsymbol{A}^{-1}\right),&i=s.
+		\end{cases}$
+		\item $\det\left(\boldsymbol{C}\right)=\det\left(\boldsymbol{A}\right)r_{s}$.
+	\end{enumerate}
+\end{corollary}

@@ -1,0 +1,14 @@
+\section{线性方程组的等价性}
+
+\begin{definition}{核基矩阵}{}
+	设$\boldsymbol{A}\in\mathbf{M}_{m,n}\left(\R\right),\nul\left(\boldsymbol{A}\right)=k,\boldsymbol{B}\in\mathbf{M}_{n,k}\left(\R\right)$.若$\left(\col_{i}\left(\boldsymbol{B}\right)\right)_{i=1}^{k}$是$\Nul\left(\boldsymbol{A}\right)$的基,则称$\boldsymbol{B}$是$\boldsymbol{A}$的核基矩阵,记为$\boldsymbol{A}^{\perp}$.
+\end{definition}
+
+\begin{theorem}{齐次线性方程组等价的正交性判别条件}{}
+	设$\boldsymbol{A}\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{B}\in\mathbf{M}_{p,n}\left(\R\right),\nul\left(\boldsymbol{A}\right)=k_{1},\nul\left(\boldsymbol{B}\right)=k_{2}$,则
+	\begin{center}
+		$\Nul\left(\boldsymbol{A}\right)=\Nul\left(\boldsymbol{B}\right)$ $\iff$ $\boldsymbol{A}\boldsymbol{B}^{\perp}=\boldsymbol{O}_{m\times k_{2}}$且$\boldsymbol{B}\boldsymbol{A}^{\perp}=\boldsymbol{O}_{p\times k_{1}}$.
+	\end{center}
+\end{theorem}
+
+

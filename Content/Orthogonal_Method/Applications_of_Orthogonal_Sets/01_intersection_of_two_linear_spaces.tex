@@ -1,0 +1,16 @@
+\chapter{正交集的应用}
+
+\section{求解两个线性子空间的交}
+
+\begin{lemma}{正交补计算的引理}{}
+	设$S_{1},S_{2}$是$\R^{n}$的子空间,则$S_{1}\cap S_{2}=S_{1}\cap S_{2}^{\perp\perp}=S_{2}\cap S_{1}^{\perp\perp}$.
+\end{lemma}
+
+\begin{remark}{计算$S_{1}\cap S_{2}$的方法}{}
+	上述引理成立的原因在于,对$\R^{n}$的每个子空间$V$都有$V^{\perp\perp}=V$.因此,我们可以按照下面的方法来计算$S_{1}\cap S_{2}$.
+	\begin{itemize}
+		\item 计算$S_{2}$的正交补$S_{2}^{\perp}$.
+		\item 寻找$S_{1}\cap S_{2}^{\perp}$中的所有向量.
+	\end{itemize}
+	如此,我们就可以利用算法(\ref{algo:orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces}),这就绕过了线性方程组的求解.
+\end{remark}

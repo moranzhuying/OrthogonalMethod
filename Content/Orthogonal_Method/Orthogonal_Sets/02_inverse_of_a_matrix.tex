@@ -1,0 +1,13 @@
+\section{矩阵的逆}
+
+\begin{theorem}{正交分解版本的逆矩阵计算方法}{}
+	设$\boldsymbol{A}\in\GL_{n}\left(\R\right)$,$\left(\boldsymbol{V}_{i}\right)_{i=0}^{n}$是$\mathbf{M}_{n}\left(\R\right)$的序列,$\left(\boldsymbol{M}_{i}\right)_{i=1}^{n}$是$\GL_{n}\left(\R\right)$的序列,满足如下条件:
+	\begin{itemize}
+		\item 对任意$1\leq i\leq n$,$\boldsymbol{M}_{i}$是$i$-主元矩阵,满足$\col_{i}\left(\boldsymbol{M}_{i}\right)=\row_{i}\left(\boldsymbol{A}\right)\boldsymbol{V}_{j}$.
+		\item $\boldsymbol{V}_{0}\in\GL_{n}\left(\R\right)$,对任意$1\leq i\leq n$,$\boldsymbol{V}_{i+1}=\boldsymbol{V}_{i}\boldsymbol{M}_{i}^{-1}$.
+	\end{itemize}
+	\begin{enumerate}
+		\item $\boldsymbol{A}\in\GL_{n}\left(\R\right)$,并且$\boldsymbol{A}^{-1}=\boldsymbol{V}^{n}$.
+		\item 对任一$1\leq i,j\leq n$,有$\langle\row_{i}\left(\boldsymbol{A}\right)\mid\col_{j}\left(\boldsymbol{V}_{j}\right)\rangle=\delta_{i,j}$.
+	\end{enumerate}
+\end{theorem}

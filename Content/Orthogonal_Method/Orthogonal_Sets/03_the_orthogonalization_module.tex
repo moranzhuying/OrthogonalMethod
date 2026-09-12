@@ -1,0 +1,31 @@
+\section{正交化方法}
+
+\begin{algorithm}{子空间的正交分解和正交补算法}{orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces}
+	设$V_{0}$和$U$是$\R^{n}$的两个线性子空间.
+	\begin{itemize}
+		\item \textbf{输入}:$V_{0}$的生成元$\left(w_{i}\right)_{i=1}^{s}$,$U$的基$\left(v_{j}\right)_{j=1}^{m}$.
+		\item \textbf{输出}:$U$在$V_{0}$中的正交子空间$W_{2}$,$W_{2}$在$V_{0}$中的补空间$W_{1}$.
+	\end{itemize}
+	\textbf{初始化}:对$j=1,\ldots,s$,作$w_{j}\leftarrow w_{j}$,设置$i=1$,$\ell=0$.
+	
+	\textbf{计算内积}:对$j=1,\ldots,s$,计算$t_{j}\coloneq\langle v_{i},w_{j}\rangle$.
+	
+	\textbf{主元定位}:对$j=\ell+1,\ldots,s$,令$p\in\left\{\ell+1,\ldots,s\right\}$为第一个满足$t_{p}\neq 0$的索引.
+	
+	\begin{itemize}
+		\item 如果这样的$p$不存在,转到\textbf{循环控制};
+		\item 如果这样的$p$存在,转到\textbf{主元归一化和列交换}.
+	\end{itemize}
+	
+	\textbf{主元归一化和列交换}:作自增$\ell\leftarrow\ell+1$.若$p\neq\ell$,交换$w_{\ell}$和$w_{p}$的位置,并且交换$t_{\ell}$和$t_{p}$的值.
+	
+	\textbf{正交消去}:对$j=1,\ldots,s$且$j\neq\ell$,作赋值$w_{j}\leftarrow w_{j}-t_{j}w_{\ell}$.
+	
+	\textbf{循环控制}:如果$i=m$,转到\textbf{输出结果};如果$i\neq m$,作赋值$i\leftarrow i+1$,转到\textbf{计算内积}.
+	
+	\textbf{输出结果}:输出$W_{1}\coloneq\langle w_{1},\ldots,w_{\ell}\rangle$和$W_{2}\coloneq\langle w_{\ell+1},\ldots,w_{s}\rangle$.
+\end{algorithm}
+
+\begin{remark}{成功找到的主元}{}
+	在上述算法中,如果$t_{j}\neq 0$,则称$t_{j}$是一个成功找到的主元.
+\end{remark}

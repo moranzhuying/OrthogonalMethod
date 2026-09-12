@@ -1,0 +1,19 @@
+\section{符号矩阵的逆}
+
+\begin{theorem}{符号矩阵的逆和行列式}{}
+	设$1\leq s\leq n,\boldsymbol{A}\in\GL_{n}\left(\R\right),\boldsymbol{C}\in\mathbf{M}_{n}\left(\R\right)$.假设
+	\begin{itemize}
+		\item 对任意$1\leq i\neq s\leq n$,有$\row_{i}\left(\boldsymbol{C}\right)=\row_{i}\left(\boldsymbol{A}\right)$;$\row_{s}\left(\boldsymbol{C}\right)$是含有参数的行(称为符号行);
+		\item 对任意$1\leq i\leq n$,有$t_{i}=\langle\row_{s}\left(\boldsymbol{C}\right)\mid\col_{i}\left(\boldsymbol{A}^{-1}\right)\rangle$;
+		\item $\boldsymbol{A}^{-1}=\left(a_{i,j}^{\ast}\right)_{\substack{1\leq i\leq n\\1\leq j\leq n}},\boldsymbol{C}=\left(c_{i,j}\right)_{\substack{1\leq i\leq n\\1\leq j\leq n}},\boldsymbol{C}^{-1}=\boldsymbol{A}^{-1}=\left(c_{i,j}^{\ast}\right)_{\substack{1\leq i\leq n\\1\leq j\leq n}}$,
+	\end{itemize}
+	那么,对任意$1\leq i,j\leq n$,有
+	\begin{align*}
+		c_{i,j}^{\ast}=
+		\begin{cases}
+			\left(\sum\limits_{\ell=1}^{n}c_{s,\ell}\left(a_{\ell,s}^{\ast}a_{i,j}^{\ast}-a_{\ell,j}^{\ast}a_{i,s}^{\ast}\right)\right)\left(\sum\limits_{\ell=1}^{n}c_{s,\ell}a_{\ell,s}^{\ast}\right)^{-1},&j\neq s,\\
+			a_{i,s}^{\ast}\left(\sum\limits_{\ell=1}^{n}c_{s,\ell}a_{\ell,s}^{\ast}\right)^{-1},&j=s,
+		\end{cases}
+	\end{align*}
+	并且$\det\left(\boldsymbol{C}\right)=\det\left(\boldsymbol{A}\right)\sum\limits_{\ell=1}^{n}c_{s,\ell}a_{\ell,s}^{\ast}$.
+\end{theorem}

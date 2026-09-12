@@ -1,0 +1,22 @@
+\section{矩阵计算的正交集算法}
+
+\begin{algorithm}{矩阵的逆,行列式,秩,行空间的基的正交集算法}{}
+	\begin{itemize}
+		\item \textbf{输入}:$\boldsymbol{A}\in\mathbf{M}_{n}\left(\R\right)$.
+		\item \textbf{输出}:若$\boldsymbol{A}$可逆,返回$\boldsymbol{A}^{-1}$和$\det\left(\boldsymbol{A}\right)$;若$\boldsymbol{A}$不可逆,返回``$\boldsymbol{A}$不可逆'',$\rank\left(\boldsymbol{A}\right)$和$\row\left(\boldsymbol{A}\right)$的基.
+	\end{itemize}
+	\textbf{初始化}:$\boldsymbol{B}\leftarrow\boldsymbol{I}_{n\times n},\det\leftarrow 1,k\leftarrow 0,\text{Basis}\leftarrow\emptyset$.
+	
+	\textbf{主循环}:令$i=1,\ldots,n$.
+	\begin{itemize}
+		\item \textbf{计算内积}:对$j=1,\ldots,n$,计算$t_{j}\coloneq\langle\row_{i}\left(\boldsymbol{A}\right)\mid\col_{j}\left(\boldsymbol{B}\right)\rangle$.
+		\item \textbf{搜索主元}:令$r$为$\left\{i,\ldots,n\right\}$中第一个使$t_{j}\neq 0$的指标.若$r$不存在,输出``$\boldsymbol{A}$不可逆'',作$\det\leftarrow 0$,转到\textbf{返回结果};若$r$存在,继续向下执行.
+		\item \textbf{列交换,归一化}:作$k\leftarrow k+1$,把$\row_{i}\left(\boldsymbol{A}\right)^{\top}$加入\text{Basis}.若$r\neq i$,作$\det\leftarrow -\det$,交换$\col_{i}\left(\boldsymbol{B}\right)$和$\col_{r}\left(\boldsymbol{B}\right)$,同时交换$t_{i}$和$t_{r}$,作$d\leftarrow t_{i},\row_{i}\left(\boldsymbol{B}\right)\leftarrow d^{-1}\col_{i}\left(\boldsymbol{B}\right),\det\leftarrow\det\cdot d$.
+		\item \textbf{正交消元}:对$j=1,\ldots,n$且$j\neq i$,作$\col_{j}\left(\boldsymbol{B}\right)\leftarrow\col_{j}\left(\boldsymbol{B}\right)-t_{j}\col_{i}\left(\boldsymbol{B}\right)$.
+	\end{itemize}
+	\textbf{返回结果}:
+	\begin{itemize}
+		\item 若$\det\neq 0$,返回$\boldsymbol{B}$作为$\boldsymbol{A}^{-1}$,返回$\det$作为$\det\left(\boldsymbol{A}\right)$.
+		\item 若$\det=0$,返回$k$作为$\rank\left(\boldsymbol{A}\right)$,返回\text{Basis}作为$\row\left(\boldsymbol{A}\right)$的基.
+	\end{itemize}
+\end{algorithm}

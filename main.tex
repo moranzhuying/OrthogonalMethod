@@ -1,0 +1,39 @@
+\documentclass[UTF8,10pt, a4paper, oneside,scheme=plain]{ctexbook}
+
+\usepackage{./structure}
+
+\author{逐影陌然}
+\title{\Huge\textbf{线性代数中的正交化方法和极化方法}}
+\date{\today}
+
+\begin{document}
+	
+\frontmatter
+\maketitle
+	
+\tableofcontents
+	
+\mainmatter
+% 引入各章节
+% ==========================================
+% Orthogonal Method in Linear Algebra
+% ==========================================
+\part{正交集方法}
+
+\input{./Content/Orthogonal_Method/Orthogonal_Sets/index}
+\input{./Content/Orthogonal_Method/Matrix_Calculation_Using_Orthogonal_Sets/index}
+\input{./Content/Orthogonal_Method/Applications_of_Orthogonal_Sets/index}
+\input{./Content/Orthogonal_Method/Linear_Equations/index}
+
+
+% ==========================================
+% 第二部分：运筹学
+% ==========================================
+%\cleardoublepage % 确保从新的一页开始
+%\setcounter{chapter}{0} % 每一门课都从“第一章”重新开始排版
+%\part{运筹学}
+	
+%\include{Content/Operation_Research/simplex_method}
+
+\backmatter
+\end{document}

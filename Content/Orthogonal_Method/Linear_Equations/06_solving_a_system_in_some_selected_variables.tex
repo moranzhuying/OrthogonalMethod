@@ -1,0 +1,11 @@
+\section{求解关于选定分量的线性方程组}
+
+\begin{theorem}{选定变量的投影求解定理}{}
+	设$\boldsymbol{U}\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{u}_{n+1}\in\mathbf{M}_{m,1}\left(\R\right),\boldsymbol{x}=\left[x_{1}\quad\ldots\quad x_{n}\right]^{\top}\in\mathbf{M}_{n,1}\left(\R\right),\tilde{\boldsymbol{x}}=\left[\boldsymbol{x}\quad 1\right]^{\top}$.令
+	\begin{gather*}
+		\boldsymbol{U}_{a}=\left[\col_{1}\left(\boldsymbol{U}\right)\middle|\ldots\middle|\col_{r}\left(\boldsymbol{U}\right)\middle|-\boldsymbol{u}_{n+1}\right],\boldsymbol{U}_{b}=\left[\col_{r+1}\left(\boldsymbol{U}\right)\middle|\ldots\middle|\col_{n}\left(\boldsymbol{U}\right)\right],\\
+		\boldsymbol{N}_{b}=\boldsymbol{U}_{b}^{\perp},
+		\tilde{\boldsymbol{x}}_{a}=\left[x_{1}\quad\ldots\quad x_{r}\quad 1\right]^{\top},
+	\end{gather*}
+	那么$\tilde{\boldsymbol{U}}\boldsymbol{x}=\boldsymbol{O}_{m\times 1}\iff\boldsymbol{N}_{b}^{\perp}\boldsymbol{U}_{a}\tilde{\boldsymbol{x}}_{a}=\boldsymbol{O}_{\left(r+1\right)\times 1}$.
+\end{theorem}

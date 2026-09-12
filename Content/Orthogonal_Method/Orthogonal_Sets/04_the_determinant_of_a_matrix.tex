@@ -1,0 +1,14 @@
+\section{矩阵的行列式}
+
+\begin{theorem}{正交分解下的行列式计算方法}{}
+	设$\boldsymbol{A}\in\mathbf{M}_{n}\left(\R\right),\boldsymbol{B}\in\GL_{n}\left(\R\right)$,其中对任一$1\leq i\leq n$有
+	\begin{align*}
+		\col_{i}\left(\boldsymbol{A}\right)=\boldsymbol{v}_{i},\col_{i}\left(\boldsymbol{B}\right)=\boldsymbol{w}_{i}^{\left(0\right)}.
+	\end{align*}
+	对$\left(\col_{i}\left(\boldsymbol{A}\right)\right)_{i=1}^{n}$作算法(\ref{algo:orthogonal-decomposition-and-orthogonal-complement-algorithm-for-vector-subspaces}).设对任意$1\leq i\leq n$,
+	\begin{itemize}
+		\item $p\in\left\{i+1,\ldots,n\right\}$是第$i$步迭代中选中的主元的索引,
+		\item $d_{i}=\langle \boldsymbol{v}_{i}\mid\boldsymbol{w}_{p}^{\left(i-1\right)}\rangle,s_{i}=\delta_{p,i}$.
+	\end{itemize}
+	若$\rank\left(\boldsymbol{A}\right)=n$,则$\det\left(\boldsymbol{A}\right)=\left(\det\left(\boldsymbol{B}\right)\right)^{-1}\prod\limits_{i=1}^{n}\left(-1\right)^{s_{i}}d_{i}$.特别地,若$\boldsymbol{B}=\boldsymbol{I}_{n\times n}$,则$\det\left(\boldsymbol{A}\right)=\prod\limits_{i=1}^{n}\left(-1\right)^{s_{i}}d_{i}$.
+\end{theorem}

@@ -1,0 +1,30 @@
+\section{线性方程组的相容性}
+
+\begin{theorem}{线性方程组的相容性定理}{}
+	设$\boldsymbol{U}\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{u}_{n+1}\in\mathbf{M}_{n,1}\left(\R\right)$,$\left(\boldsymbol{w}_{i}\right)_{i=1}^{p}$是$\col\left(\boldsymbol{A}\right)^{\perp}$的基,$\boldsymbol{W}=\left[\boldsymbol{w}_{1}\middle|\ldots\middle|\boldsymbol{w}_{p}\right]$,则
+	\begin{center}
+		方程$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$在$\R$上有解$\iff$ $\rank\left(\boldsymbol{U}\right)=\rank\left(\left[\boldsymbol{U}\middle|\boldsymbol{u}_{n+1}\right]\right)$ $\iff$ $\boldsymbol{W}^{\top}\boldsymbol{u}_{n+1}=0$.
+	\end{center}
+\end{theorem}
+
+\begin{algorithm}{线性方程组相容性的正交集算法}{}
+	\begin{itemize}
+		\item \textbf{输入}:系数矩阵$\boldsymbol{U}\in\mathbf{M}_{m,n}\left(\R\right)$,常数项$\boldsymbol{u}_{n+1}\in\mathbf{M}_{n,1}\left(\R\right)$.
+		\item \textbf{输出}:相容性判定矩阵$\boldsymbol{W}\in\mathbf{M}_{n,k}\left(\R\right)$,判定条件$\boldsymbol{W}^{\top}\boldsymbol{u}_{n+1}=0$.
+	\end{itemize}
+	\textbf{初始化}:令$\boldsymbol{W}=\boldsymbol{I}_{m\times m}$,它的列记作$\boldsymbol{w}_{1},\ldots,\boldsymbol{w}_{n}$.
+	
+	\textbf{初始化指针}:设置当前活跃列数$k=m$,列迭代指针$i=1$.
+	
+	\textbf{计算内积}:对$j=1,\ldots,n$,计算$t_{j}\coloneq\langle\boldsymbol{u}_{i}^{\top}\mid\boldsymbol{w}_{j}\rangle$.
+	
+	\textbf{主循环}:
+	\begin{itemize}
+		\item \textbf{寻找主元列}:在$\left\{1,\ldots,k\right\}$中寻找第一个使得$t_{r_{i}}\neq 0$的元素$r_{i}$.若能找到这样的$r_{i}$,把$\boldsymbol{w}_{r_{i}}$记作主元列,转到\textbf{主元列置换和归一化};如果找不到,转到\textbf{输出相容性条件}.
+		\item \textbf{主元列置换}:若$r_{i}\neq 1$,交换$\boldsymbol{w}_{r_{i}}$和$\boldsymbol{w}_{1}$,交换$t_{r_{i}}$和$t_{1}$,令$\boldsymbol{w}_{1}\leftarrow t_{1}^{-1}\boldsymbol{w}_{1}$.
+		\item \textbf{正交化}:对$j=2,\ldots,k$,若$t_{j}\neq 0$,令$\boldsymbol{w}_{j}\leftarrow\boldsymbol{w}_{j}-t_{j}\boldsymbol{w}_{j}$.
+		\item \textbf{移出主元列}:移除主元列,令$k\leftarrow k-1$.
+		\item \textbf{循环判定}:若$i<n$,令$i\leftarrow i+1$,转到\textbf{计算内积};若$i=n$,跳出循环,转到\textbf{输出相容性条件}.
+	\end{itemize}
+	\textbf{输出相容性条件}:计算并返回$\boldsymbol{W}^{\top}\boldsymbol{u}_{n+1}=\boldsymbol{O}_{n\times 1}$.
+\end{algorithm}

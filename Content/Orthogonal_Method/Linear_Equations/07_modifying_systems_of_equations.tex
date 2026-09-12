@@ -1,0 +1,106 @@
+\section{求解修改后的线性方程组}
+
+设$\boldsymbol{U}\in\mathbf{M}_{m,n}\left(\R\right),\boldsymbol{u}_{n+1}\in\mathbf{M}_{m,1}\left(\R\right),\tilde{\boldsymbol{U}}=\left[\boldsymbol{U}\middle|-\boldsymbol{u}_{n+1}\right]$,对$\tilde{\boldsymbol{U}}$应用算法(\ref{algo:orthogonal-set-algorithm-for-solving-linear-systems})迭代$m$次得到$\boldsymbol{W}_{m}\in\mathbf{M}_{n+1}\left(\R\right)$.记
+\begin{gather*}
+	\boldsymbol{u}_{1}=\col_{1}\left(\boldsymbol{U}\right),\ldots,\boldsymbol{u}_{n}=\col_{n}\left(\boldsymbol{U}\right),\\
+	\boldsymbol{w}_{1}=\col_{1}\left(\boldsymbol{W}_{m}\right),\ldots,\boldsymbol{w}_{n+1}=\col_{n+1}\left(\boldsymbol{W}_{m}\right)\\
+	\pi:\mathbf{M}_{n+1,1}\left(\R\right)\to\mathbf{M}_{n,1}\left(\R\right),\left[x_{1}\quad\ldots\quad x_{n+1}\right]^{\top}\mapsto\left[x_{1}\quad\ldots\quad x_{n}\right]^{\top}\\
+	\hat{\boldsymbol{w}}_{1}=\pi\left(\boldsymbol{w}_{1}\right),\ldots,\hat{\boldsymbol{w}}_{n+1}=\pi\left(\boldsymbol{w}_{n+1}\right).
+\end{gather*}
+
+\subsection*{增加$k$个方程}
+
+假设我们给方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$添加了$k$个方程,它们构成的方程组为$\boldsymbol{V}\boldsymbol{x}=\boldsymbol{v}_{n+1}$,其中
+\begin{align*}
+	\boldsymbol{v}_{1}=\row_{1}\left(\boldsymbol{V}\right),\ldots,\boldsymbol{v}_{k}=\row_{k}\left(\boldsymbol{V}\right),\boldsymbol{v}_{n+1}=\left[v_{1,n+1}\quad\ldots\quad v_{k,n+1}\right].
+\end{align*}
+
+令$\tilde{\boldsymbol{v}}_{1}=\left[\boldsymbol{v}_{1}\middle|-v_{1,n+1}\right],\ldots,\tilde{\boldsymbol{v}}_{k}=\left[\boldsymbol{v}_{k}\middle|-v_{k,n+1}\right]$.以$\boldsymbol{W}_{m}$为初始矩阵,对$\tilde{\boldsymbol{v}}_{1},\ldots,\tilde{\boldsymbol{v}}_{k}$重复执行算法(\ref{algo:orthogonal-set-algorithm-for-solving-linear-systems})中\textbf{计算内积}到\textbf{主元列更新和归一化}的步骤$k$次,得到矩阵$\boldsymbol{W}_{m+k}$后就得到了新方程组的通解.
+
+\subsection*{删去$k$个变量}
+
+假设我们从原方程组中删去$k$个变量$x_{r_{1}},\ldots,x_{r_{k}}$,这相当于给方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$添加了$k$个方程$x_{r_{j}}=0\left(1\leq j\leq k\right)$.
+
+记$\left(\boldsymbol{e}_{i}\right)_{i=1}^{n+1}$为$\mathbf{M}_{1,n+1}\left(\R\right)$的典范基.以$\boldsymbol{W}_{m}$为初始矩阵,对$\tilde{\boldsymbol{e}}_{j_{1}},\ldots,\tilde{\boldsymbol{e}}_{j_{k}}$重复执行算法(\ref{algo:orthogonal-set-algorithm-for-solving-linear-systems})中\textbf{计算内积}到\textbf{主元列更新和归一化}的步骤$k$次,得到矩阵$\boldsymbol{W}_{m+k}$后就得到了新方程组的通解.
+
+\subsection*{删去$1$个方程}
+
+设$\left\{1,\ldots,m\right\}=\mathcal{I}_{\text{non-red}}\sqcup\mathcal{I}_{\text{red}}$,其中$\left|\mathcal{I}\right|=\ell$是方程中剩下的主元个数.对任意$k\in\mathcal{I}_{\text{non-red}}$,存在$p\left(k\right)\in\left\{1,\ldots,\ell\right\}$使
+\begin{align*}
+	\langle\tilde{\boldsymbol{u}}_{k}\mid\boldsymbol{w}_{p\left(k\right)}\rangle=1\wedge\forall s\in\mathcal{I}_{\text{non-red}}\setminus\left\{k\right\}\left(\langle\tilde{\boldsymbol{u}}_{s}\mid\boldsymbol{w}_{p\left(k\right)}\rangle=0\right).
+\end{align*}
+设方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的解集为$\hat{\boldsymbol{w}}_{n+1}+\langle\hat{\boldsymbol{w}}_{\ell+1},\ldots,\hat{\boldsymbol{w}}_{n}\rangle$
+
+\begin{theorem}{删除单条方程的解空间更新定理}{}
+	设$d\in\left\{1,\ldots,m\right\}$.如果删去方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的第$d$个方程,那么
+	\begin{enumerate}
+		\item 当$d\in\mathcal{I}_{\text{red}}$时,新方程组的解集还是$\hat{\boldsymbol{w}}_{n+1}+\langle\hat{\boldsymbol{w}}_{\ell+1},\ldots,\hat{\boldsymbol{w}}_{n}\rangle$.
+		\item 当$d\in\mathcal{I}_{\text{non-red}}$且$\mathcal{I}_{\text{red}}=\emptyset$时,新方程组的解集为$\hat{\boldsymbol{w}}_{n+1}+\langle\hat{\boldsymbol{w}}_{\ell+1},\ldots,\hat{\boldsymbol{w}}_{n},\hat{\boldsymbol{w}}_{p\left(d\right)}\rangle$.
+		\item 当$d\in\mathcal{I}_{\text{non-red}}$且$\mathcal{I}_{\text{red}}\neq\emptyset$时,记$\mathcal{I}_{\text{rem}}=\left\{1,\ldots,m\right\}\setminus\left\{d\right\}$.
+		\begin{itemize}
+			\item 若对任意$i\in\mathcal{I}_{\text{rem}}$有$\langle\tilde{\boldsymbol{u}}_{i}\mid\boldsymbol{w}_{p\left(d\right)}\rangle=0$,则新方程组的解集为$\hat{\boldsymbol{w}}_{n+1}+\langle\hat{\boldsymbol{w}}_{\ell+1},\ldots,\hat{\boldsymbol{w}}_{n},\hat{\boldsymbol{w}}_{p\left(d\right)}\rangle$.
+			\item 若存在$i\in\mathcal{I}_{\text{rem}}$使$\langle\tilde{\boldsymbol{u}}_{i}\mid\boldsymbol{w}_{p\left(d\right)}\rangle\neq 0$,则新方程组的解集为$\hat{\boldsymbol{w}}_{n+1}+\langle\hat{\boldsymbol{w}}_{\ell+1},\ldots,\hat{\boldsymbol{w}}_{n}\rangle$.
+		\end{itemize}
+	\end{enumerate}
+\end{theorem}
+
+\subsection*{删去$k$个方程($k\geq 1$)}
+
+定义相对$\boldsymbol{U}$的主元映射$\phi$和冗余映射$\psi$如下:
+\begin{gather*}
+	\phi:\left\{1,\ldots,n\right\}\to\left\{0,\ldots,m\right\},j\mapsto
+	\begin{cases}
+		i,&\exists 1\leq i\leq n\left(\langle\boldsymbol{u}_{i}\mid\boldsymbol{w}_{j}\rangle=1\wedge\forall 1\leq k\neq j\leq n\left(\langle\boldsymbol{u}_{i}\mid\boldsymbol{w}_{k}\rangle=0\right)\right)\\
+		0,&\text{其他情况}
+	\end{cases}\\
+	\psi:\left\{1,\ldots,n\right\}\to\mathcal{P}\left(\left\{1,\ldots,m\right\}\right),j\mapsto\left\{k\in\left\{1,\ldots,m\right\}\middle|\langle\boldsymbol{u}_{k}\mid\boldsymbol{w}_{j}\rangle\neq 0,\phi\left(j\right)\neq k\right\}
+\end{gather*}
+
+\begin{theorem}{线性方程组状态的动态更新定理}{}
+	设$d\in\left\{1,\ldots,m\right\}$.假设删去方程组$\boldsymbol{U}\boldsymbol{x}=\boldsymbol{u}_{n+1}$的第$d$个方程,所得方程组的系数矩阵$\boldsymbol{U}^{\prime}$在应用算法(\ref{algo:orthogonal-set-algorithm-for-solving-linear-systems})迭代后得到的矩阵为$\boldsymbol{W}^{\ast}$,$\boldsymbol{w}_{1}^{\ast}=\col_{1}\left(\boldsymbol{W}\right),\ldots,\boldsymbol{w}_{n+1}^{\ast}=\col_{n+1}\left(\boldsymbol{W}^{\ast}\right)$,相对$\boldsymbol{U}^{\prime}$的主元映射和冗余映射分别为$\phi^{\ast}$和$\psi^{\ast}$.
+	\begin{enumerate}
+		\item 若存在$\ell\in\left\{1,\ldots,n\right\}$使得$\phi\left(\ell\right)=0$且$\psi\left(\ell\right)=\emptyset$,则
+		\begin{align*}
+			\phi^{\ast}|_{\left\{1,\ldots,n\right\}\setminus\left\{j\right\}}=\phi,\phi^{\ast}|_{\left\{\ell\right\}}=0,\psi^{\ast}=\psi,\boldsymbol{W}^{\ast}=\boldsymbol{W}.
+		\end{align*}
+		\item 若存在$\ell\in\left\{1,\ldots,n\right\}$使得$\phi\left(\ell\right)=0$且$\psi\left(\ell\right)\neq\emptyset$,则对任意$r\in\psi\left(\ell\right),j\in\left\{1,\ldots,n\right\},k\in\left\{1,\ldots,n+1\right\}$,
+		\begin{gather*}
+			\phi^{\ast}\left(j\right)=
+			\begin{cases}
+				r,&j=\ell\\
+				\phi\left(j\right),&j\neq\ell
+			\end{cases}\\
+			\psi^{\ast}\left(j\right)=
+			\begin{cases}
+				\psi\left(\ell\right)\setminus\left\{r\right\},&j=\ell\\
+				\left(\psi\left(\ell\right)\triangle\psi\left(j\right)\right)\cup A,&r\in\psi\left(j\right)\wedge j\neq\ell\\
+				\psi\left(j\right),&\text{其他}
+			\end{cases}\\
+			\boldsymbol{w}_{k}^{\ast}=
+			\begin{cases}
+				\boldsymbol{w}_{k}-\langle\boldsymbol{u}_{r}\mid\boldsymbol{w}_{k}\rangle\left(\langle\boldsymbol{u}_{r}\mid\boldsymbol{w}_{\ell}\rangle\right)^{-1}\boldsymbol{w}_{\ell},&r\in\psi\left(k\right)\wedge k\neq\ell\\
+				\left(\langle\boldsymbol{u}_{r}\mid\boldsymbol{w}_{\ell}\rangle\right)^{-1}\boldsymbol{w}_{\ell},&j=\ell\\
+				\boldsymbol{w}_{k},&\text{其他}
+			\end{cases}
+		\end{gather*}
+		其中$A=\left\{v\in\psi\left(\ell\right)\cap\psi\left(j\right)\middle|\langle\boldsymbol{u}_{v}\mid\boldsymbol{w}_{j}\rangle\langle\boldsymbol{u}_{r}\mid\boldsymbol{w}_{\ell}\rangle\neq\langle\boldsymbol{u}_{r}\mid\boldsymbol{w}_{j}\rangle\langle\boldsymbol{u}_{v}\mid\boldsymbol{w}_{\ell}\rangle\right\}$.
+		\item 若对任意$j\in\left\{1,\ldots,n\right\}$有$\phi\left(j\right)\neq d$,则
+		\begin{align*}
+			\phi^{\ast}=\phi,\psi^{\ast}:\left\{1,\ldots,n\right\}\to\mathcal{P}\left(\left\{1,\ldots,m\right\}\right),j\mapsto\psi\left(j\right)\setminus\left\{d\right\},\boldsymbol{W}^{\ast}=\boldsymbol{W}.
+		\end{align*}
+	\end{enumerate}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
